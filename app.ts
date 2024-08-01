@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import express from 'express';
 import env from "dotenv";
-import bookRoute from "./routes/book.js"
-import authorRoute from "./routes/author.js"
+import customerRoute from "./routes/customer.js"
 import dataSource from "./db/dbConfig.js";
 import { customErrorHandler, DefaultErrorHandler } from "./middleware/errorHandler.js";
 
@@ -15,8 +14,7 @@ app.get("/", (req: Request, res: Response) => {
     res.send("hello world");
 })
 
-app.use("/books", bookRoute);
-app.use("/author", authorRoute)
+app.use("/customer", customerRoute);
 
 app.use(customErrorHandler)
 
