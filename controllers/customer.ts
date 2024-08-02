@@ -35,16 +35,16 @@ const editCustomer = async (id: number, payload: Customer) => {
         throw new AppError("Customer not found ", 404, true)
     }
 
-     const phoneCustomer = await Customer.findOne({
+    const phoneCustomer = await Customer.findOne({
         where: {
             mobilePhone: payload.mobilePhone
         }
     })
-
-    if (phoneCustomer) {
-        throw new AppError("mobilePhone already exits", 409, true)
+    if (customer.id !== phoneCustomer?.id) {
+        if (phoneCustomer) {
+            throw new AppError("mobilePhone already exits", 409, true)
+        }
     }
-
     customer.name = payload.name
     customer.mobilePhone = payload.mobilePhone
     customer.balance = payload.balance
